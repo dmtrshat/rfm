@@ -1,0 +1,26 @@
+[package]
+name = "rfm"
+version = "0.5.0"
+authors = ["Dmitry Shatokhin <dmtrshatokhin@gmail.com>"]
+edition = "2018"
+description = "Expanded options for interacting with files and directories. Creating/copying/moving etc. File manager, only inside Rust (V) (°,,,,°) (V)"
+license = "MIT"
+keywords = [
+    "filesystem", "fs", "copy", "cp", "move", "mv", "remove", "rm", "create", "create dir",
+    "create dirs", "create file", "create file", "mkdir", "touch", "dir", "file", "file manager"
+]
+homepage = "https://github.com/dmtrshat/rfm"
+documentation = "https://docs.rs/rfm"
+repository = "https://github.com/dmtrshat/rfm"
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+    "LICENSE",
+    "README.md",
+]
+
+[lib]
+name = "rfm"
+crate-type = ["lib"]
+
+[dependencies]
