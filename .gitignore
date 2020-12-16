@@ -1,1 +1,8 @@
 /target
+/tests/testing/clean
+/tests/testing/cp
+/tests/testing/ls
+/tests/testing/mkdir
+/tests/testing/mv
+/tests/testing/touch
+default.profraw
