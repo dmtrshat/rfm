@@ -23,35 +23,21 @@ static TOUCH: &str = "./tests/testing/touch";
 fn test_ls() {
     let dir = std::path::Path::new(&DATA).to_path_buf();
     let empty_dir = std::path::Path::new(&LS).to_path_buf();
+
+    if !empty_dir.exists() {
+        create_dir(&empty_dir).ok();
+    }
+
     let content_of_empty_dir = rfm::ls(&empty_dir).unwrap();
     let content_of_dir = rfm::ls(&dir).unwrap();
-    let expected = vec![
-        dir.join(&FILE_1),
-        dir.join(&DIR_2),
-        dir.join(&FILE_2),
-        dir.join(&DIR_1),
-    ];
 
     assert!(
-        &content_of_dir[0] == &expected[0],
-        "Should show the contents of the directory"
+        !&content_of_dir.is_empty(),
+        "ls of not empty dir should return list with content of dir"
     );
-    assert!(
-        &content_of_dir[1] == &expected[1],
-        "Should show the contents of the directory"
-    );
-    assert!(
-        &content_of_dir[2] == &expected[2],
-        "Should show the contents of the directory"
-    );
-    assert!(
-        &content_of_dir[3] == &expected[3],
-        "Should show the contents of the directory"
-    );
-
     assert!(
         &content_of_empty_dir.is_empty(),
-        "The content of the empty directory is 0"
+        "ls of empty dir should return empty list"
     );
 }
 
@@ -170,6 +156,10 @@ fn test_touch() {
     let file_2 = touch_dir.join(&FILE_2);
     let files = vec![&file_1, &file_2];
 
+    if !touch_dir.exists() {
+        create_dir(&touch_dir).ok();
+    }
+
     if file_1.exists() {
         remove_file(&file_1).ok();
     }
@@ -189,6 +179,10 @@ fn test_clean() {
     let file_1 = clean_dir.join(&FILE_1);
     let file_2 = clean_dir.join(&FILE_2);
     let dir_1 = clean_dir.join(&DIR_1);
+
+    if !clean_dir.exists() {
+        create_dir(&clean_dir).ok();
+    }
 
     File::create(&file_1).ok();
     File::create(&file_2).ok();

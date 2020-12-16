@@ -1,5 +1,9 @@
 # **R**ust **F**ile **M**anager
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Crates.io Status](https://img.shields.io/crates/v/rfm.svg)](https://crates.io/crates/rfm)
+[![Docs](https://docs.rs/rfm/badge.svg)](https://docs.rs/rfm)
+
 > File manager, only inside Rust 🦀
 
 **`rfm`** is a convenient and intuitive way to interact with files on OS. Function naming is similar to Unix commands _(`ls`, `mkdir`, `mv`, `rm`, `cp`, `touch` etc.)_, so you can easily figure out how to use it.
