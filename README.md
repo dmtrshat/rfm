@@ -50,11 +50,11 @@ fn main() -> Result<()> {
 | ----------------- | ----------------------------------------------------------------------------------------------------- |
 | [rfm::ls]() | Read the directory/directories and return the content. `dir` - takes the path to the directory whose contents you want to retrieve. |
 | [rfm::clean]() |  Clears the directory/directories of all child files and directories on the passed path. `paths` - takes a list of paths of what you want to clean. |
-| [rfm::mkdir]() | Creates a directory/directories on the passed path **Note**, the function creates all missing directories if they occur in the passed parameter. `dir_paths` - takes a list of paths of what you want to create. |
+| [rfm::mkdir]() | Creates a directory/directories on the passed path. **Note**, the function creates all missing directories if they occur in the passed parameter. `dir_paths` - takes a list of paths of what you want to create. |
 | [rfm::touch]() | Creates a file/files in the passed path. `file_paths` - takes a list of paths of what you want to create. |
 | [rfm::cp]() | Copies files and directories, including nested files and directories. `from` - takes a list of paths of what you want to copy. `to` - destination path. |
-| [rfm::file::mv]() | Moves files and directories, including nested files and directories. `from` - takes a list of paths of what you want to copy. `to` - destination path. |
-| [rfm::file::rm]() | Deletes files/directories (including nested files/directories). `from` - takes a list of paths of what you want to delete. |
+| [rfm::mv]() | Moves files and directories, including nested files and directories. `from` - takes a list of paths of what you want to copy. `to` - destination path. |
+| [rfm::rm]() | Deletes files/directories (including nested files/directories). `from` - takes a list of paths of what you want to delete. |
 
 ## Contributing
 
