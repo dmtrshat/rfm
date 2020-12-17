@@ -1,6 +1,7 @@
 # **R**ust **F**ile **M**anager
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/dmtrshat/rfm.svg?branch=main)](https://travis-ci.com/dmtrshat/rfm)
 [![Crates.io Status](https://img.shields.io/crates/v/rfm.svg)](https://crates.io/crates/rfm)
 [![Docs](https://docs.rs/rfm/badge.svg)](https://docs.rs/rfm)
 
