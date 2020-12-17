@@ -1,6 +1,7 @@
 # **R**ust **F**ile **M**anager
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.com/dmtrshat/rfm.svg?branch=main)](https://travis-ci.com/dmtrshat/rfm)
 [![Crates.io Status](https://img.shields.io/crates/v/rfm.svg)](https://crates.io/crates/rfm)
 [![Docs](https://docs.rs/rfm/badge.svg)](https://docs.rs/rfm)
 
@@ -14,7 +15,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rfm = "0.5.0"
+rfm = "0.6.0"
 ```
 
 ## Usage
@@ -29,10 +30,10 @@ use std::{
 };
 
 fn main() -> Result<()> {
-    let dir_from_1 = Path::new("./tests/testing/mv").to_path_buf();
-    let dir_from_2 = Path::new("./tests/testing/cp").to_path_buf();
+    let dir_from_1 = Path::new("./foo").to_path_buf();
+    let dir_from_2 = Path::new("./bar").to_path_buf();
 
-    let dir_to = Path::new("./tests/testing/mkdir").to_path_buf();
+    let dir_to = Path::new("./baz").to_path_buf();
 
     // check dir for existing files/dirs
     if rfm::ls(&dir_to)?.len() > 0 {
