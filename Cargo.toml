@@ -1,6 +1,6 @@
 [package]
 name = "rfm"
-version = "0.5.5"
+version = "0.6.0"
 authors = ["Dmitry Shatokhin <dmtrshatokhin@gmail.com>"]
 edition = "2018"
 description = "Expanded options for interacting with files and directories. Creating/copying/moving etc. File manager, only inside Rust 🦀"
