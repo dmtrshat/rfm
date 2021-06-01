@@ -8,6 +8,7 @@ static FILE_1: &str = "file-1.txt";
 static FILE_2: &str = "file-2.txt";
 static DIR_1: &str = "dir-1";
 static DIR_2: &str = "dir-2";
+static DIR_3: &str = "dir-3";
 static DIR_FOO: &str = "foo";
 static DIR_BAR: &str = "bar";
 static DATA: &str = "./tests/testing/data";
@@ -18,6 +19,7 @@ static MKDIR: &str = "./tests/testing/mkdir";
 static MV: &str = "./tests/testing/mv";
 static RM: &str = "./tests/testing/rm";
 static TOUCH: &str = "./tests/testing/touch";
+static EXTRACT: &str = "./tests/testing/extract";
 
 #[test]
 fn test_ls() {
@@ -231,5 +233,43 @@ fn test_mv() {
     assert!(
         !dir_2.exists(),
         "The files/directories must not be at the starting point after the transfer"
+    );
+}
+
+#[test]
+fn test_extract() {
+    let data_dir = Path::new(&DATA);
+    let extract_dir = Path::new(&EXTRACT).to_path_buf();
+    let dir_3 = data_dir.join(&DIR_3);
+    let need_to_extract = vec![&dir_3];
+
+    let expected_file_1 = extract_dir.join("file-1.txt");
+    let expected_file_2 = extract_dir.join("file-2.txt");
+    let expected_file_3 = extract_dir.join("file-3.txt");
+    let expected_file_4 = extract_dir.join("file-4.txt");
+
+    if extract_dir.exists() {
+        remove_dir_all(&extract_dir).ok();
+    }
+
+    create_dir(&extract_dir).ok();
+
+    rfm::extract(&need_to_extract, &extract_dir).ok();
+    assert!(extract_dir.exists(), "Extract dir should exist");
+    assert!(
+        expected_file_1.exists(),
+        "File should exist after extraction"
+    );
+    assert!(
+        expected_file_2.exists(),
+        "File should exist after extraction"
+    );
+    assert!(
+        expected_file_3.exists(),
+        "File should exist after extraction"
+    );
+    assert!(
+        expected_file_4.exists(),
+        "File should exist after extraction"
     );
 }
