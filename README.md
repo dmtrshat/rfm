@@ -60,18 +60,13 @@ fn main() -> Result<()> {
 | [rfm::cp]() | Copies files and directories, including nested files and directories. `from` - takes a list of paths of what you want to copy. `to` - destination path. |
 | [rfm::mv]() | Moves files and directories, including nested files and directories. `from` - takes a list of paths of what you want to copy. `to` - destination path. |
 | [rfm::rm]() | Deletes files/directories (including nested files/directories). `from` - takes a list of paths of what you want to delete. |
-
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am "Add some feature"`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request
-6. Stay Rusty 🦀
+| [rfm::extract]() | Extracts all files from the directory, including nested files. `from` - takes a list of paths of where you want to extract files from. `to` - destination path. |
 
 ## License
 
 [MIT](LICENSE)
+
+---
+Stay Rusty 🦀
 
 Made by [Dmitry Shatokhin](https://github.com/dmtrshat) with love ❤️
