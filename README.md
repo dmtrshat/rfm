@@ -11,11 +11,11 @@
 
 ## Installation
 
-Add this to your `Cargo.toml`:
+Add the latest rfm version to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rfm = "0.7.0"
+rfm = "X.Y.Z" #replace it with the current version
 ```
 
 ## Usage
