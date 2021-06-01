@@ -310,3 +310,55 @@ pub fn clean(paths: &Vec<&PathBuf>) -> Result<()> {
         Ok(())
     }
 }
+
+/// Extracts all files from the directory, including nested files.
+/// `from` - takes a list of paths of where you want to extract files from.
+/// `to` - destination path.
+///
+/// # Errors
+///
+/// This function will return an error in the following situations, but is not
+/// limited to just these case:
+///
+/// - Param `from` contains file or directory does not exist.
+/// - Param `from` contains file or directory with invalid name.
+/// - The current process does not have the permission to access to input
+/// params.
+///
+/// # Example
+///
+/// ```rust,ignore
+///  extern crate rfm;
+///  use rfm::extract;
+///
+///  let dir = std::path::Path::new("./dir").to_path_buf();
+///  let dir_2 = std::path::Path::new("./dir_2").to_path_buf();
+///  let dirs: Vec<&std::path::PathBuf> = vec![&dir, &dir_2];
+///  let to = std::path::Path::new("./tests/expected_files").to_path_buf();
+///
+///  extract(&dirs, &to)?;
+/// ```
+pub fn extract(from: &Vec<&PathBuf>, to: &PathBuf) -> Result<()> {
+    if from.len() <= 0 {
+        let err_msg = format!("from param is empty - {:?}", from);
+        err!(err_msg, ErrorKind::InvalidInput);
+    }
+
+    for i in from {
+        let paths = ls(i).ok().unwrap();
+
+        if paths.len() > 0 {
+            for p in paths {
+                if p.is_file() {
+                    let file = vec![&p];
+                    cp(&file, &to).ok();
+                } else {
+                    let newfrom = vec![&p];
+                    extract(&newfrom, &to).ok();
+                }
+            }
+        }
+    }
+
+    Ok(())
+}

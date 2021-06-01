@@ -15,7 +15,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rfm = "0.6.0"
+rfm = "0.7.0"
 ```
 
 ## Usage
