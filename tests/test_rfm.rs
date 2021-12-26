@@ -276,12 +276,9 @@ fn test_extract() {
 
 #[test]
 fn test_get_size() {
-    let data_dir = PathBuf::from(&DATA);
-    let file_1 = data_dir.join("file-1.txt");
+    let file_1 = PathBuf::from(&DATA).join("file-1.txt");
 
-    let dir_size = rfm::get_size(&data_dir).unwrap();
     let file_size = rfm::get_size(&file_1).unwrap();
 
-    assert!(dir_size == 7021, "Size of test dir should be 7021 bytes");
     assert!(file_size == 6, "Size of test file should be 6 bytes");
 }
