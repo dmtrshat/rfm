@@ -7,3 +7,4 @@
 /tests/testing/touch
 /tests/testing/extract
 default.profraw
+.DS_Store

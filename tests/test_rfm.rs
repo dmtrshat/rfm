@@ -1,7 +1,7 @@
 extern crate rfm;
 use std::{
     fs::{create_dir, remove_dir_all, remove_file, File},
-    path::{Path, PathBuf},
+    path::PathBuf,
 };
 
 static FILE_1: &str = "file-1.txt";
@@ -23,8 +23,8 @@ static EXTRACT: &str = "./tests/testing/extract";
 
 #[test]
 fn test_ls() {
-    let dir = std::path::Path::new(&DATA).to_path_buf();
-    let empty_dir = std::path::Path::new(&LS).to_path_buf();
+    let dir = PathBuf::from(&DATA);
+    let empty_dir = PathBuf::from(&LS);
 
     if !empty_dir.exists() {
         create_dir(&empty_dir).ok();
@@ -45,15 +45,15 @@ fn test_ls() {
 
 #[test]
 fn test_cp() {
-    let data_dir = Path::new(&DATA);
-    let file_1 = data_dir.join(&FILE_1).to_path_buf();
-    let file_2 = data_dir.join(&FILE_2).to_path_buf();
+    let data_dir = PathBuf::from(&DATA);
+    let file_1 = data_dir.join(&FILE_1);
+    let file_2 = data_dir.join(&FILE_2);
     let files = vec![&file_1, &file_2];
-    let dir_1 = data_dir.join(&DIR_1).to_path_buf();
-    let dir_2 = data_dir.join(&DIR_2).to_path_buf();
+    let dir_1 = data_dir.join(&DIR_1);
+    let dir_2 = data_dir.join(&DIR_2);
     let dirs = vec![&dir_1, &dir_2];
 
-    let to_path = Path::new(&CP).to_path_buf();
+    let to_path = PathBuf::from(&CP);
     let expected_files: Vec<PathBuf> = vec![to_path.join(&FILE_1), to_path.join(&FILE_2)];
     let expected_dirs: Vec<PathBuf> = vec![to_path.join(&DIR_1), to_path.join(&DIR_2)];
     let expected_content_of_dirs: Vec<PathBuf> = vec![
@@ -112,9 +112,9 @@ fn test_cp() {
 
 #[test]
 fn test_rm() {
-    let rm_dir = Path::new(&RM);
-    let dir = rm_dir.join(&DIR_2).to_path_buf();
-    let file = rm_dir.join(&FILE_1).to_path_buf();
+    let rm_dir = PathBuf::from(&RM);
+    let dir = rm_dir.join(&DIR_2);
+    let file = rm_dir.join(&FILE_1);
 
     let elements = vec![&dir, &file];
 
@@ -133,7 +133,7 @@ fn test_rm() {
 
 #[test]
 fn test_mkdir() {
-    let mkdir_dir = Path::new(&MKDIR);
+    let mkdir_dir = PathBuf::from(&MKDIR);
     let dir_foo = mkdir_dir.join(&DIR_FOO);
     let few_dirs = mkdir_dir.join(&DIR_2).join(&DIR_FOO).join(&DIR_BAR);
     let dirs = vec![&dir_foo, &few_dirs];
@@ -153,7 +153,7 @@ fn test_mkdir() {
 
 #[test]
 fn test_touch() {
-    let touch_dir = Path::new(&TOUCH);
+    let touch_dir = PathBuf::from(&TOUCH);
     let file_1 = touch_dir.join(&FILE_1);
     let file_2 = touch_dir.join(&FILE_2);
     let files = vec![&file_1, &file_2];
@@ -177,7 +177,7 @@ fn test_touch() {
 
 #[test]
 fn test_clean() {
-    let clean_dir = Path::new(&CLEAN).to_path_buf();
+    let clean_dir = PathBuf::from(&CLEAN);
     let file_1 = clean_dir.join(&FILE_1);
     let file_2 = clean_dir.join(&FILE_2);
     let dir_1 = clean_dir.join(&DIR_1);
@@ -198,7 +198,7 @@ fn test_clean() {
 
 #[test]
 fn test_mv() {
-    let mv_dir = Path::new(&MV);
+    let mv_dir = PathBuf::from(&MV);
     let dir_1 = mv_dir.join(&DIR_1);
     let dir_2 = mv_dir.join(&DIR_2);
     let file_1 = mv_dir.join(&DIR_2).join(&FILE_1);
@@ -238,8 +238,8 @@ fn test_mv() {
 
 #[test]
 fn test_extract() {
-    let data_dir = Path::new(&DATA);
-    let extract_dir = Path::new(&EXTRACT).to_path_buf();
+    let data_dir = PathBuf::from(&DATA);
+    let extract_dir = PathBuf::from(&EXTRACT);
     let dir_3 = data_dir.join(&DIR_3);
     let need_to_extract = vec![&dir_3];
 
@@ -272,4 +272,16 @@ fn test_extract() {
         expected_file_4.exists(),
         "File should exist after extraction"
     );
+}
+
+#[test]
+fn test_get_size() {
+    let data_dir = PathBuf::from(&DATA);
+    let file_1 = data_dir.join("file-1.txt");
+
+    let dir_size = rfm::get_size(&data_dir).unwrap();
+    let file_size = rfm::get_size(&file_1).unwrap();
+
+    assert!(dir_size == 7021, "Size of test dir should be 7021 bytes");
+    assert!(file_size == 6, "Size of test file should be 6 bytes");
 }

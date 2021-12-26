@@ -61,6 +61,7 @@ fn main() -> Result<()> {
 | [rfm::mv]() | Moves files and directories, including nested files and directories. `from` - takes a list of paths of what you want to copy. `to` - destination path. |
 | [rfm::rm]() | Deletes files/directories (including nested files/directories). `from` - takes a list of paths of what you want to delete. |
 | [rfm::extract]() | Extracts all files from the directory, including nested files. `from` - takes a list of paths of where you want to extract files from. `to` - destination path. |
+| [rfm::get_size]() | Returns the size of a file or directory in bytes, `path` - the path to the directory/file whose size you want to get. |
 
 ## License
 
